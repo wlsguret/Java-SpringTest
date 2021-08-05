@@ -7,9 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/formtestProc">
-<input type="text" name="test">
-<input type="submit">
-</form>
+${loginVO.id }<br>
+${loginVO.password }
 </body>
 </html>

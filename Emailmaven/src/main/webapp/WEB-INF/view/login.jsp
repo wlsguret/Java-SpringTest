@@ -7,9 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/formtestProc">
-<input type="text" name="test">
-<input type="submit">
+<form action="/loginProc" method="get">
+<input type="text" name="id"><br>
+<input type="text" name="id"><br>
+<input type="text" name="password"><br>
+<input type="submit" value="로그인"><br>
 </form>
 </body>
 </html>

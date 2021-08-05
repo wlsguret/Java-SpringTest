@@ -5,10 +5,14 @@ import org.junit.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+
+import testURL.URLTestController;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import test.URLTestController;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;;
 
 public class URLTest {
 
@@ -47,12 +51,31 @@ public class URLTest {
 		.andExpect(model().attribute("name", "parkjeabum"));
 	}
 	
-	/*
-	 * @Test public void modelTest() throws Exception {
-	 * mock.perform(get("/datatest").accept(MediaType.parseMediaType(
-	 * "application/html;charset=UTF-8"))) .andExpect(model().attribute("name",
-	 * "parkjeabum"));
-	 * 
-	 * }
-	 */
+	
+//	@Test 
+//	public void modelTest() throws Exception {
+//	mock.perform(get("/datatest").accept(MediaType.parseMediaType(
+//	"application/html;charset=UTF-8"))) .andExpect(model().attribute("name",
+//	"parkjeabum"));
+//	
+//	}
+	
+	//@Test
+	public void formtestProc1() throws Exception {
+		mock.perform(get("/formtestProc").param("name", "hong"))
+		.andDo(print())
+		.andExpect(view().name("/WEB-INF/view/viewtest.jsp"));
+	}
+	
+	@Test
+	public void login() throws Exception {
+		MultiValueMap<String, String> values = new LinkedMultiValueMap<>();
+		values.add("id", "user");
+		values.add("id", "유저");
+		values.add("password", "1111");
+		mock.perform(get("/loginProc").params(values))
+		.andDo(print())
+		.andExpect(view().name("/WEB-INF/view/loginProc.jsp"));
+	}
+	
 }
